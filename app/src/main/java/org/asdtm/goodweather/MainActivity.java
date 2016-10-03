@@ -186,7 +186,9 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         preLoadWeather();
 
-        LocalBroadcastManager.getInstance(this).registerReceiver(mWeatherUpdateReceiver, new IntentFilter(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT));
+        LocalBroadcastManager.getInstance(this).registerReceiver(mWeatherUpdateReceiver,
+                                                                 new IntentFilter(
+                                                                         CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT));
     }
 
     @Override
@@ -326,6 +328,16 @@ public class MainActivity extends AppCompatActivity {
                 public boolean onNavigationItemSelected(MenuItem item) {
                     int itemId = item.getItemId();
                     switch (itemId) {
+                        case R.id.nav_menu_current_weather:
+                            Intent mainActivityIntent = new Intent(MainActivity.this,
+                                                                        MainActivity.class);
+                            startActivity(mainActivityIntent);
+                            break;
+                        case R.id.nav_menu_weather_forecast:
+                            Intent weatherForecastIntent = new Intent(MainActivity.this,
+                                                       WeatherForecastActivity.class);
+                            startActivity(weatherForecastIntent);
+                            break;
                         case R.id.nav_settings:
                             Intent goToSettings = new Intent(MainActivity.this,
                                                              SettingsActivity.class);
